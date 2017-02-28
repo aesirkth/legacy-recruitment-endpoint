@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/recruitment", function(req, res, next) {
-  SlackPoster.postInterestedUser(req.body.name, req.body.email, req.body.programOfStudy, req.body.yearsLeft, req.body.levelOfStudy)
+  SlackPoster.postInterestedUser(req.body.name, req.body.email, req.body.describeYourself, req.body.programOfStudy, req.body.yearsLeft, req.body.levelOfStudy)
   .then(() => {
     res.status(200);
     res.write("ok");
@@ -23,13 +23,3 @@ app.post("/recruitment", function(req, res, next) {
 
 require("http").createServer(app).listen(8080);
 console.log("Server listening on port 8080");
-
-SlackPoster.postInterestedUser(
-  "test",
-  "test@kth.se",
-  "test",
-  "4",
-  "bachelor"
-)
-.then(data => console.log(data))
-.catch(err => console.error(err));
